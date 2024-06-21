@@ -86,6 +86,7 @@ export const Datatable = () => {
         <div className="next">
            <button disabled={page<=10} onClick={handlepageneg}>Prev</button>
             <span>{count}</span>
+            
             <button disabled={data.length==0}onClick={handlepage}>Next</button>
         </div>
 

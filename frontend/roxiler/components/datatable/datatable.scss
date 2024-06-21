@@ -37,5 +37,19 @@
     background-color: #f1f1f1;
   }
   .next{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button{
+      padding: 12px 24px;
+      background-color: #e6f751;
+      border: transparent;
+      margin-top: 10px;
+    }
+    span{
+      font-size: 17px;
+      padding: 10px 20px;
+      background-color: #f3eaea;
+      margin: 5px;
+    }
   }
