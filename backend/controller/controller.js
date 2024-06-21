@@ -29,8 +29,8 @@ export const Show=async (req, res) => {
        await connectdb();
        const { page = 1, perPage = 10 } = req.query;
        const month= req.query.month || 3;
-        const monthNumber = parseInt(month); // Parse the month to an integer
-        const skip = (page - 1) * perPage;
+        const monthNumber = parseInt(month); 
+        const skip = (page - 1) + perPage;
         console.log(monthNumber);
         const transactions = await rox.aggregate([
             {
@@ -60,7 +60,7 @@ export const Sale_amount= async (req, res) => {
     try {
         await connectdb();
         const { month = 3 } = req.query;
-        const monthNumber = parseInt(month); // Parse the month to an integer
+        const monthNumber = parseInt(month); 
 
         const totalSale = await rox.aggregate([
             {
@@ -83,7 +83,22 @@ export const Sale_amount= async (req, res) => {
                 }
             }
         ]).exec();
-
+        const show_for = await rox.aggregate([
+            {
+                $addFields: {
+                    month: { $month: '$dateOfSale' }
+                }
+            },
+            {
+                $match: {
+                    $and: [
+                        { month: monthNumber },
+                        { sold: true }
+                    ]
+                }
+            },
+            
+        ]).exec();
         res.status(200).json(totalSale);
     } catch (error) {
     
@@ -123,7 +138,7 @@ export const Bar=async (req,res)=>{
     res.status(200).json(ans);
     
 }
-export const Category=async (req,res)=>{
+export const Category = async (req, res) => {
     try {
         await connectdb();
         const { month = 3 } = req.query;
@@ -145,18 +160,17 @@ export const Category=async (req,res)=>{
             },
             {
                 $group: {
-                    _id: '$category',
-                    count: { $sum: 1 },
-                    total: { $sum: '$price' }
+                    _id: '$category',  // Group by category
+                    count: { $sum: 1 },  // Count the number of items sold in this category
+                    total: { $sum: '$price' }  // Sum the prices of items sold in this category
                 }
             }
         ]).exec();
-        
-
         res.status(200).json(totalSale);
     } catch (error) {
-    
-        res.status(500).json({ error: error });
+        console.error('Error fetching category data:', error);
+        res.status(500).json({ error: 'Failed to fetch category data' });
     }
-}
+};
+
 

@@ -46,7 +46,7 @@ export const Amount_data = () => {
       </div>
         <div className="data">
             <h2>Total Sales:</h2>
-            <span> ₹ {data.length>0?parseInt(data[0].totalAmount/10): 0}</span>
+            <span> ₹ {data.length>0?parseInt(data[0].totalAmount): 0}</span>
         </div>
        <Category selectedMonth={selectedMonth} setMonth={setMonth}/>
     </div>

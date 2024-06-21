@@ -34,9 +34,9 @@ export const Category = ({selectedMonth,setMonth}) => {
               <div key={item._id} className="card">
                 <span>Category: {item._id}</span>
                 <br/>
-                <span>Quantity: {item.count/10}</span>
+                <span>Quantity: {item.count}</span>
                 <br/>
-                <span>Sale Amount: {parseInt(item.total/10)}</span>
+                <span>Sale Amount: {parseInt(item.total)}</span>
               </div>
             ))}
             </div>

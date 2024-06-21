@@ -24,7 +24,8 @@ export const Datatable = () => {
       try {
         const response = await axios.get(`http://localhost:8800/show`, {
           params: { month: selectedMonth,
-            page: page
+            page: page,
+
            }
         });
         console.log(response.data);
@@ -86,7 +87,7 @@ export const Datatable = () => {
         <div className="next">
            <button disabled={page<=10} onClick={handlepageneg}>Prev</button>
             <span>{count}</span>
-            
+
             <button disabled={data.length==0}onClick={handlepage}>Next</button>
         </div>
 
