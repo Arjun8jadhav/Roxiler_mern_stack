@@ -142,7 +142,7 @@ export const Category = async (req, res) => {
     try {
         await connectdb();
         const { month = 3 } = req.query;
-        const monthNumber = parseInt(month); // Parse the month to an integer
+        const monthNumber = parseInt(month); 
 
         const totalSale = await rox.aggregate([
             {
@@ -160,9 +160,9 @@ export const Category = async (req, res) => {
             },
             {
                 $group: {
-                    _id: '$category',  // Group by category
-                    count: { $sum: 1 },  // Count the number of items sold in this category
-                    total: { $sum: '$price' }  // Sum the prices of items sold in this category
+                    _id: '$category',  
+                    count: { $sum: 1 },  
+                    total: { $sum: '$price' }  
                 }
             }
         ]).exec();
