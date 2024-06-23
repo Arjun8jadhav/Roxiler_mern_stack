@@ -8,12 +8,12 @@ export const Home = () => {
 
     const handleClick = async () => {
         setLoading(true);
-        setError("");  // Clear previous error
+        setError("");  
         setSuccess("");
         try {
             console.log("start");
-            const res = await axios.get("http://localhost:8800/start");  // Ensure the URL matches your backend endpoint
-            console.log(res.data);  // Optionally log the response
+            const res = await axios.get("http://localhost:8800/start");  
+            console.log(res.data);  
             setSuccess("Succesful")
         } catch (err) {
             console.log(err);

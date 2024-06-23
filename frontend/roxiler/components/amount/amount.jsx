@@ -6,16 +6,19 @@ import { Category } from "../category/category";
 export const Amount_data = () => {
   const [selectedMonth,setMonth]=useState(3);
   const [data, setData] = useState([]);
+  const [load,setload]=useState(false);
   const handlechange = (event) => {
     setMonth(parseInt(event.target.value));
   };
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setload(true);
         const response = await axios.get(`http://localhost:8800/sale_amount`, {
           params: { month: selectedMonth,
            }
         });
+        setload(false)
         console.log(response.data);
         setData(response.data);
       } catch (err) {
@@ -27,6 +30,7 @@ export const Amount_data = () => {
   }, [selectedMonth]); 
   return (
     <div className="container">
+      <div className={load?"blur":null}>
         <div>
         <label htmlFor="month">Select Month:</label>
         <select id="month" value={selectedMonth} onChange={handlechange}>
@@ -49,6 +53,9 @@ export const Amount_data = () => {
             <span> ₹ {data.length>0?parseInt(data[0].totalAmount): 0}</span>
         </div>
        <Category selectedMonth={selectedMonth} setMonth={setMonth}/>
+       </div>
+       <div className={load? "loader": null}></div>
+       <h3>Created by @arjun_jadhav_2024</h3>
     </div>
   )
 }

@@ -1,7 +1,32 @@
-.container{
-    .data{
+.container {
+    .data {
         display: flex;
         align-items: center;
         justify-content: center;
     }
+    h3{
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+.loader {
+    width: 120px;
+    height: 20px;
+    background:
+        linear-gradient(#000 0 0) left/20px 20px no-repeat #858181;
+    animation: l1 1s infinite linear;
+    position: absolute;
+    align-items: center;
+    top: 48%;
+    left: 48%;
+}
+
+@keyframes l1 {
+    50% {
+        background-position: right
+    }
+}
+.blur{
+    filter: blur(3px);
 }

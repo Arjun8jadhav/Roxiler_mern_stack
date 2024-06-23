@@ -1,6 +1,6 @@
 
 import {  Amount_data } from "../components/amount/amount";
-import { Category } from "../components/category/category";
+
 import { BarChart } from "../components/chart/chart";
 import { Datatable } from "../components/datatable/datatable";
 import { Home } from "../components/home/home"
